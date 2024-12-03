@@ -1,0 +1,21 @@
+.field-Text{
+    margin: 24px;
+}
+
+.field-Text label{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 24px;
+    box-sizing: border-box;
+    
+}
+.field-Text input{
+    box-shadow: 0px 5px 15px  rgba(0,0,0,0.2);
+    width: 100%;
+    border:none;
+    font-size: 24px;
+    padding: 24px;
+    box-sizing: border-box;
+    background-color: #fff;
+    
+}

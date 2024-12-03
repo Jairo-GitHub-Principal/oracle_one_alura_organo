@@ -1,0 +1,29 @@
+.time__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     padding: 32px;
+    /* so pra delimitar o container*/
+    min-height: 438px; /* altura minimo para quando o container estiver vazio*/
+    
+}
+
+.time__container h3{
+    margin: 32px;
+    border-bottom: 4px solid;
+    padding-bottom: 8px;
+
+}
+
+.time__colaboradores{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.time__colaboradores h2{
+    margin: 32px;
+    border-bottom: 4px solid;
+    padding-bottom: 8px;
+}
