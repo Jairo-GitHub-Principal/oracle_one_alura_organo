@@ -1,7 +1,12 @@
 .formComponent{
-    margin: 80px 0;
     display: flex;
-    justify-content: center;
+    margin: 80px 0;
+    gap: 10px;
+    flex-wrap: wrap;
+   justify-content: center;
+
+    
+    
 }
 
 .formComponent form{
@@ -11,6 +16,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 1px 1px 16px   rgba(0,0,0,0.08);
+    margin-top: 40px;
     
 
 }

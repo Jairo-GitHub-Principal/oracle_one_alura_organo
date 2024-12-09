@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { TimeProvider } from './componentes/models/useTimesModels';
+import { ColaboradorProvider } from './componentes/models/colaboradores';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <TimeProvider> {/** envolve a aplicação com o provedor do contexto de timesModels tornando o state times model acessivel em toda a aplicação */}
+        <ColaboradorProvider>
+        <App />
+        </ColaboradorProvider>
+    </TimeProvider>
   </React.StrictMode>
 );
 

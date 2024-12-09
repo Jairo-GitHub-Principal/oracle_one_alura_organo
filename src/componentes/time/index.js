@@ -1,35 +1,79 @@
-import "./time.css"
-import Colaborador from "../colaboradores"
+import hexToRgba from 'hex-to-rgba';
+
+import "./time.css";
+import Colaborador from "../colaboradores";
+import {  useContext } from "react";
+import { TimeContext } from "../models/useTimesModels"; // Importando o TimeContext
+
 const Time = (props) => {
-    // console.log("time")
-    // console.log(props)
-    const corPrimaria = { backgroundColor: props.corPrimaria } // essa é uma foram de definer um estilo inline no react jsx
-    const corSecundaria = { borderColor: props.corSecundaria }
+    // console.log("Time Colaboradores",props.colaboradores)
+    // console.log("Time time",props.time)
+
+    
+    
+    /** abaixo um acesso a um estado compartilhado que foi criado em um contexto usando useContext
+     * não confundo o acesso compartilhado abaixo com um state
+     */
+    const { setTimeModels } = useContext(TimeContext); // Acessando timeModels e setTimeModels do contexto
+   //console.log("Time ",props.id) // esse é  o id do time que recebemos através de props
+
+    //console.log(props.colaboradoresIniciais) // aqui chegou os colaboradores iniciais
+    // Criar um estado para a cor primária e cor secundária
+
+    // Função para mudar a cor, também precisa atualizar o estado do contexto
+    function mudarCor(cor, id) {
+        // Atualizando o estado global de timeModels para refletir a mudança de cor
+        setTimeModels( timesModelsAnterior=> { /** aqui nos temo o estado anterior do state timeModels, 
+            representado pelo argumento timesModelsAnterior, sempre que um primeiro argumento passado 
+            para o setState esse argumento vai representar o estado anterior do state que sera atualizado
+             */
+            return timesModelsAnterior.map((time) => {
+                if (time.id === id) {
+                    // console.log("time anterior",time.nomeTime," time atualizado",nome)
+                    return {
+                        ...time,
+                        corSecundaria:cor, // Atualizando apenas a corSecundaria do time correspondente cor, // Atualizando apenas a corPrimaria do time correspondente
+                        corPrimaria: hexToRgba(cor, 0.15), // aqui muda a cor de  fundo do componente time
+                    };
+                }
+                return time;
+            });
+        });
+    }
+
     return (
-        /** abaixo temos o props.colaboradores.length > 0 que significa se o array colaboradores for maior que 0
-         * então ele vai montar a extrutura do time, que é a estrutura do componente Time, onde os 
-         * cards dos colaboradores serão exibidos e se o colaborador.length for 0 ele não vai exibir a estrutura do time,
-         * aqui poderiamos também usar um ternario para isso
-         */
         (props.colaboradores.length > 0) &&
-        <section className="time__container" style={corPrimaria}>
-            <h3
-                style={{ borderColor: corSecundaria }} // outro forma de aplicar estilo inline no react
-            >{props.nomeTime}</h3>
+         (
+            <section className="time__container" style={{ backgroundColor: props.corPrimaria }}>
+                <input
+                    type="color"
+                    value={props.corSecundaria}
+                    onChange={(e) => mudarCor(e.target.value, props.id)}
+                />
+                <h3
+                    style={{ borderColor: props.corSecundaria, color: props.corSecundaria }}
+                >
+                    {props.nomeTime}
+                </h3>
 
-            <div className="time__colaboradores" >
+                <div className="time__colaboradores">
+                    {props.colaboradores.map((colaborador) => {
+                        return (
+                            <Colaborador
+                                corBodyCard={props.corPrimaria}
+                                corHeader={props.corSecundaria}
+                                key={colaborador.nomeState}
+                                deletarColaborador={props.deletarColaborador}
+                                colaboradores={colaborador}
+                                favoritarColaborador={props.favoritarColaborador}
+                                
+                            />
+                        );
+                    })}
+                </div>
+            </section>
+        )
+    );
+};
 
-                {props.colaboradores.map(colaborador =>
-                    <Colaborador
-
-                        corBodyCard={props.corPrimaria}
-                        corHeader={props.corSecundaria}
-                        key={colaborador.nomeState}
-                        colaboradores={colaborador} /** aqui estamos enviando as informações  nome cargo e imagem para o componente colaborador  */
-                    />)}
-            </div>
-        </section>
-    )
-}
-
-export default Time
+export default Time;

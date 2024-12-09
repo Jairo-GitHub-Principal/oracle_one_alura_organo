@@ -17,13 +17,27 @@
 
 .time__colaboradores{
     display: flex;
-    flex-direction: row;
-    gap: 24px;
+    justify-content: center;
+    max-width: 80%;
     flex-wrap: wrap;
+    gap: 50px;
 }
 
 .time__colaboradores h2{
     margin: 32px;
     border-bottom: 4px solid;
     padding-bottom: 8px;
+}
+
+
+
+
+/*listagem de colaboradores cadastrados*/
+
+
+.colaboradores__cadastrados{
+    display: flex;
+    gap:44px;
+    flex-wrap: wrap;    
+
 }

@@ -12,6 +12,8 @@ function Form(props){
     <FormComponent // chamada do componente FormComponent
     
     times={props.times} // chamada da propriedade times do componente FormComponent e passamos ela para o componente FormComponent
+    
+    cadastrarTime={props.cadastrarTime} // chamada da propriedade cadastrarTime do componente FormComponent e passamos ela para o componente FormComponent
     propscolaboradorForm={props.propsColaboradorFormComponent} /** aqui temos uma props chamada colaboradorCadastrado, 
       que esta recebendo uma outra props
     */
